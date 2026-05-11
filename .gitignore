@@ -1,0 +1,7 @@
+build/
+build-*/
+.superpowers/
+data/logs.db
+*.user
+.DS_Store
+CMakeUserPresets.json
