@@ -4,6 +4,8 @@ A simulated medical device control interface demonstrating MedTech-grade softwar
 
 Built as a portfolio project for MedTech engineering roles.
 
+![Dashboard — ACTIVE state](docs/screenshot.png)
+
 ---
 
 ## Architecture
