@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.7.*'
+          modules: 'qtcharts'
+          cache: true
+
+      - name: Configure
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON
+
+      - name: Build
+        run: cmake --build build --parallel
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Lint (clang-tidy, Ubuntu only)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get install -y clang-tidy
+          cmake -B build-lint -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+                -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=OFF
+          cmake --build build-lint --parallel
+          clang-tidy -p build-lint src/*.cpp \
+            --checks='-*,readability-*,modernize-*,cppcoreguidelines-*' \
+            --warnings-as-errors='' || true

@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  docker-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract tag version
+        id: meta
+        run: echo "VERSION=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            --build-arg VERSION=${{ steps.meta.outputs.VERSION }} \
+            -t ghcr.io/${{ github.repository_owner }}/smart-dental-handpiece:${{ steps.meta.outputs.VERSION }} \
+            -t ghcr.io/${{ github.repository_owner }}/smart-dental-handpiece:latest \
+            .
+
+      - name: Push Docker image
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/smart-dental-handpiece:${{ steps.meta.outputs.VERSION }}
+          docker push ghcr.io/${{ github.repository_owner }}/smart-dental-handpiece:latest
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body: |
+            ## Smart Dental Handpiece ${{ steps.meta.outputs.VERSION }}
+
+            Docker image: `ghcr.io/${{ github.repository_owner }}/smart-dental-handpiece:${{ steps.meta.outputs.VERSION }}`
+
+            Run headlessly:
+            ```bash
+            docker run --rm ghcr.io/${{ github.repository_owner }}/smart-dental-handpiece:${{ steps.meta.outputs.VERSION }}
+            ```
