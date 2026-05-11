@@ -1,7 +1,7 @@
 FROM ubuntu:22.04 AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV QT_VERSION=6.7.3
+ENV QT_VERSION=6.7.2
 
 RUN apt-get update && apt-get install -y \
     build-essential cmake ninja-build git python3 python3-pip wget \
@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     libxcb-xfixes0-dev libxkbcommon-dev libxkbcommon-x11-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install aqtinstall
+RUN pip3 install "aqtinstall==3.1.9"
 RUN aqt install-qt linux desktop ${QT_VERSION} gcc_64 \
     -m qtcharts -O /opt/Qt
 
@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y \
 COPY --from=builder /src/build/SmartDentalHandpiece /app/SmartDentalHandpiece
 COPY --from=builder /opt/Qt /opt/Qt
 
-ENV QT_VERSION=6.7.3
+ENV QT_VERSION=6.7.2
 ENV LD_LIBRARY_PATH="/opt/Qt/${QT_VERSION}/gcc_64/lib"
 ENV QT_QPA_PLATFORM=offscreen
 
