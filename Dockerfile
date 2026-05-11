@@ -1,7 +1,7 @@
 FROM ubuntu:22.04 AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV QT_VERSION=6.7.0
+ENV QT_VERSION=6.7.3
 
 RUN apt-get update && apt-get install -y \
     build-essential cmake ninja-build git python3 python3-pip wget \
@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y \
 COPY --from=builder /src/build/SmartDentalHandpiece /app/SmartDentalHandpiece
 COPY --from=builder /opt/Qt /opt/Qt
 
-ENV QT_VERSION=6.7.0
+ENV QT_VERSION=6.7.3
 ENV LD_LIBRARY_PATH="/opt/Qt/${QT_VERSION}/gcc_64/lib"
 ENV QT_QPA_PLATFORM=offscreen
 
