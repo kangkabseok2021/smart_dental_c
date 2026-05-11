@@ -23,7 +23,7 @@ if(GIT_VERSION STREQUAL "")
     set(GIT_VERSION "${PROJECT_VERSION}")
 endif()
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick Sql Charts)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Qml Quick QuickControls2 Sql Charts)
 
 add_compile_definitions(APP_VERSION="${GIT_VERSION}")
 
@@ -44,7 +44,7 @@ qt_add_executable(SmartDentalHandpiece ${APP_SOURCES} qml/qml.qrc)
 target_include_directories(SmartDentalHandpiece PRIVATE src)
 
 target_link_libraries(SmartDentalHandpiece
-    PRIVATE Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick Qt6::Sql Qt6::Charts
+    PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Qml Qt6::Quick Qt6::QuickControls2 Qt6::Sql Qt6::Charts
 )
 
 option(BUILD_TESTS "Build unit tests" OFF)

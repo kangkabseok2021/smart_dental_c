@@ -37,13 +37,13 @@ Item {
                         anchors.horizontalCenter: parent.horizontalCenter
                         text: modelData.label
                         color: "#4b5563"
-                        font { family: "monospace"; pixelSize: 9; letterSpacing: 1 }
+                        font { family: "Courier New"; pixelSize: 9; letterSpacing: 1 }
                     }
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
                         text: modelData.value
                         color: modelData.color
-                        font { family: "monospace"; pixelSize: 22; bold: true }
+                        font { family: "Courier New"; pixelSize: 22; bold: true }
                     }
                 }
             }
@@ -135,7 +135,7 @@ Item {
                     Text {
                         text: modelData.label
                         color: "#4b5563"
-                        font { family: "monospace"; pixelSize: 9; letterSpacing: 1 }
+                        font { family: "Courier New"; pixelSize: 9; letterSpacing: 1 }
                     }
 
                     Slider {
@@ -191,7 +191,7 @@ Item {
             onClicked: stateManager.startDevice()
             contentItem: Text {
                 text: parent.text; color: "#4ade80"
-                font { family: "monospace"; pixelSize: 11; letterSpacing: 1 }
+                font { family: "Courier New"; pixelSize: 11; letterSpacing: 1 }
                 horizontalAlignment: Text.AlignHCenter
             }
             background: Rectangle {
@@ -207,7 +207,7 @@ Item {
             onClicked: stateManager.startProcedure()
             contentItem: Text {
                 text: parent.text; color: "#4ade80"
-                font { family: "monospace"; pixelSize: 11; letterSpacing: 1 }
+                font { family: "Courier New"; pixelSize: 11; letterSpacing: 1 }
                 horizontalAlignment: Text.AlignHCenter
             }
             background: Rectangle {
@@ -223,7 +223,7 @@ Item {
             onClicked: stateManager.stopProcedure()
             contentItem: Text {
                 text: parent.text; color: "#94a3b8"
-                font { family: "monospace"; pixelSize: 11; letterSpacing: 1 }
+                font { family: "Courier New"; pixelSize: 11; letterSpacing: 1 }
                 horizontalAlignment: Text.AlignHCenter
             }
             background: Rectangle {
@@ -239,7 +239,7 @@ Item {
                 anchors.centerIn: parent
                 text: "CALIBRATING..."
                 color: "#60a5fa"
-                font { family: "monospace"; pixelSize: 11; letterSpacing: 2 }
+                font { family: "Courier New"; pixelSize: 11; letterSpacing: 2 }
             }
         }
 
@@ -251,7 +251,7 @@ Item {
             onClicked: stateManager.onSensorUpdate(30000, 80.0, 0)
             contentItem: Text {
                 text: parent.text; color: "#ef4444"
-                font { family: "monospace"; pixelSize: 11; letterSpacing: 1 }
+                font { family: "Courier New"; pixelSize: 11; letterSpacing: 1 }
                 horizontalAlignment: Text.AlignHCenter
             }
             background: Rectangle {

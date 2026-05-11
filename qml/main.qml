@@ -37,7 +37,7 @@ ApplicationWindow {
             Text {
                 text: "SMART DENTAL HANDPIECE"
                 color: "#94a3b8"
-                font { family: "monospace"; pixelSize: 11; letterSpacing: 2 }
+                font { family: "Courier New"; pixelSize: 11; letterSpacing: 2 }
             }
 
             Item { Layout.fillWidth: true }
@@ -64,14 +64,14 @@ ApplicationWindow {
                          : stateManager.isFault     ? "#f59e0b"
                          : stateManager.stateString === "ACTIVE" ? "#4ade80"
                          : "#94a3b8"
-                    font { family: "monospace"; pixelSize: 10; letterSpacing: 1 }
+                    font { family: "Courier New"; pixelSize: 10; letterSpacing: 1 }
                 }
             }
 
             Text {
                 text: "v" + appVersion
                 color: "#4b5563"
-                font { family: "monospace"; pixelSize: 10 }
+                font { family: "Courier New"; pixelSize: 10 }
             }
         }
     }
@@ -140,7 +140,7 @@ ApplicationWindow {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "EMERGENCY STOP"
                 color: "#ef4444"
-                font { family: "monospace"; pixelSize: 32; bold: true; letterSpacing: 4 }
+                font { family: "Courier New"; pixelSize: 32; bold: true; letterSpacing: 4 }
             }
 
             Text {

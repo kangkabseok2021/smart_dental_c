@@ -1,8 +1,9 @@
 // src/main.cpp
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QDir>
+#include <QQuickStyle>
 
 #include "HardwareHandler.h"
 #include "StateManager.h"
@@ -10,7 +11,9 @@
 #include "DatabaseManager.h"
 
 int main(int argc, char* argv[]) {
-    QGuiApplication app(argc, argv);
+    QQuickStyle::setStyle(QStringLiteral("Basic"));
+
+    QApplication app(argc, argv);
     app.setApplicationName(QStringLiteral("SmartDentalHandpiece"));
     app.setApplicationVersion(QStringLiteral(APP_VERSION));
 
